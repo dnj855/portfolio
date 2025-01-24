@@ -180,4 +180,13 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
 }
+
+@media (max-width: 767px) {
+  .blob-container {
+    bottom: -20%;
+    left: -50%; /* Décalé plus à gauche sur mobile */
+    width: 150%; /* Plus large pour éviter les bords */
+    height: 100%;
+  }
+}
 </style>
