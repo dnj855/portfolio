@@ -3,37 +3,40 @@
     <!-- Le blob en arrière-plan -->
     <BlobBackground />
 
-    <div class="flex flex-col min-h-screen justify-between md:justify-start md:flex-row md:items-start w-full">
-      <!-- Info personnelle - maintenant en haut sur mobile -->
-      <div class="text-md font-sans p-4 md:ml-5 md:pt-12 md:pl-12 order-1">
-        <h2 class="font-semibold">CÉDRIC LANG-ROTH</h2>
-        <div class="mt-1 space-y-0.5">
-          <p>Développeur Full-Stack</p>
-          <p>Expert No-Code</p>
-          <p>Formateur</p>
+    <!-- Nous utilisons maintenant flex avec un conteneur intérieur pour gérer les positions -->
+    <div class="min-h-screen flex flex-col md:flex-row w-full md:items-center">
+      <div class="flex flex-col md:flex-row md:items-start w-full">
+        <!-- Info personnelle alignée avec le haut du menu -->
+        <div class="text-md font-sans p-4 md:ml-5 md:pl-12 order-1 md:self-start md:sticky md:top-12">
+          <h2 class="font-semibold">CÉDRIC LANG-ROTH</h2>
+          <div class="mt-1 space-y-0.5">
+            <p>Développeur Full-Stack</p>
+            <p>Expert No-Code</p>
+            <p>Formateur</p>
+          </div>
         </div>
-      </div>
 
-      <!-- Navigation principale -->
-      <nav class="w-full md:w-auto px-4 md:px-6 pt-6 md:pt-12 md:ml-auto order-2 pb-8 md:pb-0">
-        <div class="grid grid-cols-1 gap-2 md:gap-4 tracking-wide">
-          <NuxtLink to="/code" class="hover:text-gray-700 transition-colors heading-menu">
-            CODE
-          </NuxtLink>
-          <NuxtLink to="/no-code" class="hover:text-gray-700 transition-colors heading-menu">
-            NO-CODE
-          </NuxtLink>
-          <NuxtLink to="/formations" class="hover:text-gray-700 transition-colors heading-menu">
-            FORMATIONS
-          </NuxtLink>
-          <NuxtLink to="/a-propos" class="hover:text-gray-700 transition-colors heading-menu">
-            À PROPOS
-          </NuxtLink>
-          <NuxtLink to="/contact" class="hover:text-gray-700 transition-colors heading-menu">
-            CONTACT
-          </NuxtLink>
-        </div>
-      </nav>
+        <!-- Navigation principale centrée verticalement -->
+        <nav class="w-full md:w-auto px-4 md:px-6 order-2 pb-8 md:pb-0 md:ml-auto">
+          <div class="grid grid-cols-1 gap-2 md:gap-4 tracking-wide">
+            <NuxtLink to="/code" class="hover:text-gray-700 transition-colors heading-menu">
+              CODE
+            </NuxtLink>
+            <NuxtLink to="/no-code" class="hover:text-gray-700 transition-colors heading-menu">
+              NO-CODE
+            </NuxtLink>
+            <NuxtLink to="/formations" class="hover:text-gray-700 transition-colors heading-menu">
+              FORMATIONS
+            </NuxtLink>
+            <NuxtLink to="/a-propos" class="hover:text-gray-700 transition-colors heading-menu">
+              À PROPOS
+            </NuxtLink>
+            <NuxtLink to="/contact" class="hover:text-gray-700 transition-colors heading-menu">
+              CONTACT
+            </NuxtLink>
+          </div>
+        </nav>
+      </div>
     </div>
   </main>
 </template>
