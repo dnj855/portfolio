@@ -1,5 +1,5 @@
 <template>
-  <main class="min-h-screen relative">
+  <main class="min-h-screen">
     <BlobBackground />
 
     <div class="min-h-screen flex flex-col md:flex-row w-full md:items-center">
@@ -17,19 +17,19 @@
 
         <nav class="w-full md:w-auto px-4 md:px-6 pb-8 md:pb-0 md:ml-auto flex flex-col justify-end md:justify-start flex-1 md:flex-initial">
           <div class="grid grid-cols-1 gap-2 md:gap-4 tracking-wide">
-            <NuxtLink to="/code" class="hover:text-gray-700 transition-colors heading-menu">
+            <NuxtLink to="/code" class="heading-menu">
               CODE
             </NuxtLink>
-            <NuxtLink to="/no-code" class="hover:text-gray-700 transition-colors heading-menu">
+            <NuxtLink to="/no-code" class="heading-menu">
               NO-CODE
             </NuxtLink>
-            <NuxtLink to="/formations" class="hover:text-gray-700 transition-colors heading-menu">
+            <NuxtLink to="/formations" class="heading-menu">
               FORMATIONS
             </NuxtLink>
-            <NuxtLink to="/a-propos" class="hover:text-gray-700 transition-colors heading-menu">
+            <NuxtLink to="/a-propos" class="heading-menu">
               À PROPOS
             </NuxtLink>
-            <NuxtLink to="/contact" class="hover:text-gray-700 transition-colors heading-menu">
+            <NuxtLink to="/contact" class="heading-menu">
               CONTACT
             </NuxtLink>
           </div>
@@ -87,7 +87,7 @@ nav a {
 
 @media (max-width: 767px) {
   nav {
-    margin-bottom: 2rem;
+    padding-bottom: 2rem;
   }
 
   .heading-menu {
