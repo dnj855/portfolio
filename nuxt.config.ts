@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     transpile: ["three"],
   },
   vite: {
+    server: {
+      allowedHosts: true
+    },
     plugins: [
       tailwindcss(),
     ],

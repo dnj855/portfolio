@@ -1,12 +1,12 @@
 <template>
-  <main class="h-screen relative overflow-hidden">
+  <main class="md:min-h-screen min-h-dvh relative overflow-hidden">
     <BlobBackground />
 
     <div class="h-full flex flex-col md:flex-row w-full md:items-center">
 
-      <div class="flex flex-col flex-1 md:flex-row md:items-start w-full">
+      <div class="md:min-h-screen min-h-dvh flex flex-col flex-1 md:flex-row md:items-start w-full justify-between overflow-hidden">
         <!-- Info personnelle -->
-        <div class="text-md font-sans p-4 md:ml-5 md:pl-12 md:self-start md:sticky md:top-12">
+        <div class="text-md font-sans p-12 md:p-4 md:ml-5 md:left-12 md:self-start md:sticky md:top-12">
           <h2 class="font-semibold">CÉDRIC LANG-ROTH</h2>
           <div class="mt-1 space-y-0.5">
             <p>Développeur Full-Stack</p>
@@ -15,7 +15,7 @@
           </div>
         </div>
 
-        <nav class="w-full md:w-auto px-4 md:px-6 pb-8 md:pb-0 md:ml-auto flex flex-col justify-end md:justify-start flex-1 md:flex-initial">
+        <nav class="w-full md:w-auto pb-10 md:px-6 md:pb-0 md:ml-auto flex flex-col justify-end md:justify-start md:flex-initial overflow-hidden">
           <div class="grid grid-cols-1 gap-2 md:gap-4 tracking-wide">
             <NuxtLink to="/code" class="heading-menu">
               CODE
@@ -40,9 +40,6 @@
 </template>
 
 <style scoped>
-main {
-  font-family: 'Inter', sans-serif;
-}
 
 nav a {
   line-height: 1.1;
@@ -86,10 +83,6 @@ nav a {
 }
 
 @media (max-width: 767px) {
-  nav {
-    padding-bottom: 2rem;
-  }
-
   .heading-menu {
     text-align: center;
   }
