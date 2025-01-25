@@ -3,19 +3,21 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Copions d'abord les fichiers de dépendances
-COPY package*.json pnpm-lock.yaml ./
+# Copy package files
+COPY package*.json ./
+COPY pnpm-lock.yaml ./
 
-# Installation de pnpm et des dépendances
-RUN corepack enable && \
-    corepack prepare pnpm@latest --activate && \
-    pnpm install --frozen-lockfile
+# Install pnpm (puisque vous utilisez pnpm comme gestionnaire de paquets)
+RUN corepack enable
+RUN corepack prepare pnpm@latest --activate
 
-# Copie du code source uniquement après l'installation des dépendances
-# Ainsi, si seul le code change, les dépendances ne seront pas réinstallées
+# Install dependencies
+RUN pnpm install
+
+# Copy source code
 COPY . .
 
-# Construction de l'application
+# Build the application
 RUN pnpm run build
 
 # Production stage
@@ -23,22 +25,24 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Installation minimale de pnpm
-RUN corepack enable && \
-    corepack prepare pnpm@latest --activate
+# Install pnpm
+RUN corepack enable
+RUN corepack prepare pnpm@latest --activate
 
-# Copie uniquement des fichiers nécessaires
+# Copy built application
 COPY --from=builder /app/.output ./.output
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
 
-# Installation des dépendances de production uniquement
-RUN pnpm install --prod --frozen-lockfile
+# Install only production dependencies
+RUN pnpm install --prod
 
-ENV HOST=0.0.0.0
+# Set environment variables
 ENV PORT=3000
+ENV HOST=0.0.0.0
 ENV NODE_ENV=production
 
 EXPOSE 3000
 
+# Start the application
 CMD ["node", ".output/server/index.mjs"]

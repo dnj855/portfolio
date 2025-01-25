@@ -1,51 +1,64 @@
+# Nom du workflow tel qu'il apparaîtra dans l'interface GitHub Actions
 name: Deploy to Staging
 
+# Définition des événements qui déclenchent le workflow
 on:
   push:
     branches:
-      - master
-  workflow_dispatch:
+      - master               # Se déclenche sur chaque push sur master
+  workflow_dispatch:         # Permet aussi un déclenchement manuel via l'interface GitHub
 
+# Variables d'environnement globales pour le workflow
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  REGISTRY: ghcr.io                    # Utilisation du GitHub Container Registry
+  IMAGE_NAME: ${{ github.repository }} # Format: username/repository
 
+# Définition des jobs à exécuter
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest    # Utilise la dernière version d'Ubuntu comme runner
+    
+    # Permissions nécessaires pour interagir avec GitHub Packages
     permissions:
-      contents: read
-      packages: write
+      contents: read          # Permet de lire le code source
+      packages: write         # Permet de publier des packages (images Docker)
 
     steps:
-      - uses: actions/checkout@v4
+      # Étape 1: Récupération du code source
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
+      # Étape 2: Configuration de Docker Buildx pour la construction d'images
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        with:
-          # Utilisation d'un driver plus performant
-          driver-opts: |
-            image=moby/buildkit:latest
 
-      - name: Log in to registry
+      # Étape 3: Connexion au GitHub Container Registry
+      - name: Log in to container registry
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      # Étape 4: Construction et publication de l'image Docker
+      - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
-          push: true
+          context: .                                        # Utilise le répertoire courant comme contexte
+          push: true                                        # Push l'image après la construction
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          # Configuration avancée du cache
-          cache-from: |
-            type=gha,scope=${{ github.ref_name }}-build
-            type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          cache-to: type=gha,scope=${{ github.ref_name }}-build,mode=max
-          # Activation des fonctionnalités expérimentales pour plus de performance
-          platforms: linux/amd64
-          provenance: false
-          sbom: false
+          cache-from: type=gha                             # Utilise le cache GitHub Actions
+          cache-to: type=gha,mode=max                      # Stocke le cache pour les futurs builds
+
+      # Étape 5: Déploiement sur le VPS via SSH
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}         # IP ou domaine du serveur
+          username: deploy-user                     # Utilisateur dédié au déploiement
+          key: ${{ secrets.SSH_PRIVATE_KEY }}      # Clé SSH stockée dans les secrets GitHub
+          script: |
+            cd /opt/staging
+            docker compose pull
+            docker compose up -d --force-recreate
+            docker image prune -f                   # Nettoie les anciennes images
