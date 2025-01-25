@@ -1,8 +1,9 @@
 <template>
   <main class="md:min-h-screen min-h-dvh relative overflow-hidden">
+
     <BlobBackground />
 
-    <div class="h-full flex flex-col md:flex-row w-full md:items-center">
+    <div class="min-h-screen flex flex-col md:flex-row w-full md:items-center">
 
       <div class="md:min-h-screen min-h-dvh flex flex-col flex-1 md:flex-row md:items-start w-full justify-between overflow-hidden">
         <!-- Info personnelle -->
