@@ -1,13 +1,12 @@
 <template>
-  <main class="md:min-h-screen min-h-dvh relative overflow-hidden">
-
+  <main class="md:h-screen sm:h-dvh relative">
     <BlobBackground />
 
-    <div class="min-h-screen flex flex-col md:flex-row w-full md:items-center">
+    <div class="min-h-full flex flex-col md:flex-row w-full md:items-center">
 
-      <div class="md:min-h-screen min-h-dvh flex flex-col flex-1 md:flex-row md:items-start w-full justify-between overflow-hidden">
+      <div class="max-sm:min-h-dvh flex flex-col flex-1 md:flex-row md:items-start w-full max-sm:justify-between">
         <!-- Info personnelle -->
-        <div class="text-md font-sans p-12 md:p-4 md:ml-5 md:left-12 md:self-start md:sticky md:top-12">
+        <div class="text-md font-sans p-15 md:ml-5 md:p-4 md:self-start md:sticky md:left-12 md:top-12">
           <h2 class="font-semibold">CÉDRIC LANG-ROTH</h2>
           <div class="mt-1 space-y-0.5">
             <p>Développeur Full-Stack</p>
@@ -16,7 +15,7 @@
           </div>
         </div>
 
-        <nav class="w-full md:w-auto pb-10 md:px-6 md:pb-0 md:ml-auto flex flex-col justify-end md:justify-start md:flex-initial overflow-hidden">
+        <nav class="w-full md:w-auto px-4 pb-8 max-sm:pr-8 md:px-6 md:pb-0 ml-auto flex flex-col justify-end md:justify-start flex-1 md:flex-initial">
           <div class="grid grid-cols-1 gap-2 md:gap-4 tracking-wide">
             <NuxtLink to="/code" class="heading-menu">
               CODE
@@ -41,6 +40,9 @@
 </template>
 
 <style scoped>
+main {
+  font-family: 'Inter', sans-serif;
+}
 
 nav a {
   line-height: 1.1;
@@ -84,8 +86,9 @@ nav a {
 }
 
 @media (max-width: 767px) {
+
   .heading-menu {
-    text-align: center;
+    text-align: right;
   }
 }
 </style>
