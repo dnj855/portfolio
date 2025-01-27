@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   plugins: [{ src: "~/plugins/three.client.js", mode: "client" }],
   css: ['~/assets/css/main.css'],
   build: {
-    transpile: ["three"],
+    transpile: ["three", "gsap"],
   },
   vite: {
     server: {
