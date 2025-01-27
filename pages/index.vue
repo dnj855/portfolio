@@ -6,7 +6,7 @@
 
       <div class="max-sm:min-h-dvh flex flex-col flex-1 md:flex-row md:items-start w-full max-sm:justify-between">
         <!-- Info personnelle -->
-        <div class="text-md font-sans p-15 md:ml-5 md:p-4 md:self-start md:sticky md:left-12 md:top-12">
+        <div class="text-base font-sans p-15 md:ml-5 md:p-4 md:self-start md:sticky md:left-12 md:top-12">
           <h2 class="font-semibold">CÉDRIC LANG-ROTH</h2>
           <div class="mt-1 space-y-0.5">
             <p>Développeur Full-Stack</p>
