@@ -1,5 +1,7 @@
 <template>
-  <div class="absolute fixed -translate-x-1/3 translate-y-[400%] z-10">
+  <div :class="[
+      'logo absolute fixed -translate-x-1/3 translate-y-[400%] z-10 transition transition-all duration-300',
+{ 'opacity-0': currentSection === 'home'}]">
     <h2 class="text-base font-sans font-semibold sticky rotate-270 top-10 cursor-pointer" @click="scrollToHome()">CÉDRIC LANG-ROTH</h2>
   </div>
 </template>
@@ -7,6 +9,13 @@
 <script setup>
 import gsap from 'gsap'
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
+
+defineProps({
+  currentSection: {
+    type: String,
+    required: true,
+  }
+})
 
 gsap.registerPlugin(ScrollToPlugin);
 
