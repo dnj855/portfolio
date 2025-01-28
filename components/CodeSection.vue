@@ -27,14 +27,14 @@
 
     <!-- Liste des projets -->
     <div class="flex flex-col mt-auto text-right gap-[25px] content-center items-end" id="projects" ref="projectsList">
-      <div v-for="(project, index) in projects" :key="index">
+      <div v-for="(project, id) in data" :key="id">
         <div class="flex items-center gap-[2px]">
           <div class="flex flex-col items-end">
-              <span v-for="(tech, techIndex) in project.stack" :key="techIndex" class="text-sm text-gray-500 font-sans">
+              <span v-for="(tech, techIndex) in project.meta.mainTech" :key="techIndex" class="text-sm text-gray-500 font-sans">
                 {{ tech }}
               </span>
           </div>
-          <h2 class="projects">{{ project.name }}</h2>
+          <h2 class="projects">{{ project.title }}</h2>
         </div>
       </div>
     </div>
@@ -56,24 +56,12 @@ const sections = [
   { id: 'contact', label: 'Contact' }
 ]
 
-const projects = [
-  {
-    name: 'HappyTasks',
-    stack: ['Ruby on Rails', 'Hotwire Stimulus']
-  },
-  {
-    name: 'Eden Labs Learn',
-    stack: ['NuxtJS', 'TailwindCSS']
-  },
-  {
-    name: 'Projet pigistes',
-    stack: ['Symfony', 'Bootstrap']
-  },
-  {
-    name: 'Service J&F',
-    stack: ['Symfony', 'Hotwire Stimulus']
-  }
-]
+const route = useRoute()
+const { data } = await useAsyncData(route.path, () => {
+  return queryCollection('code')
+      .where('visible','=', true)
+      .all()
+})
 
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
