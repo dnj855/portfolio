@@ -27,7 +27,7 @@
 
     <!-- Liste des projets -->
     <div class="flex flex-col mt-auto text-right gap-[25px] content-center items-end" id="projects" ref="projectsList">
-      <div v-for="(project, id) in data" :key="id">
+      <div v-for="(project, id) in data" :key="id" @click="showProjectDetails(project)" class="cursor-pointer hover:italic">
         <div class="flex items-center gap-[2px]">
           <div class="flex flex-col items-end">
               <span v-for="(tech, techIndex) in project.meta.mainTech" :key="techIndex" class="text-sm text-gray-500 font-sans">
@@ -39,6 +39,13 @@
       </div>
     </div>
   </div>
+  <Teleport to="body">
+    <ProjectDetailsModal
+        v-if="selectedProject"
+        :project="selectedProject"
+        @close="selectedProject = null"
+    />
+  </Teleport>
 </template>
 
 <script setup>
@@ -107,6 +114,12 @@ onMounted(() => {
     }
   })
 })
+
+const selectedProject = ref(null)
+
+const showProjectDetails = (project) => {
+  selectedProject.value = project
+}
 </script>
 
 <style scoped>
