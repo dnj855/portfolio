@@ -30,7 +30,7 @@
       <div v-for="(project, id) in data" :key="id" @click="showProjectDetails(project)" class="cursor-pointer hover:italic">
         <div class="flex items-center gap-[2px]">
           <div class="flex flex-col items-end">
-              <span v-for="(tech, techIndex) in project.meta.mainTech" :key="techIndex" class="text-sm text-gray-500 font-sans">
+              <span v-for="(tech, techIndex) in (project.techs ? Object.values(project.techs).slice(0,2) : [])" :key="techIndex" class="text-sm text-gray-500 font-sans">
                 {{ tech }}
               </span>
           </div>

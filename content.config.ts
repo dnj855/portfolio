@@ -8,6 +8,7 @@ export default defineContentConfig({
             schema: z.object({
                 title: z.string(),
                 visible: z.string(),
+                techs: z.array(z.string()),
             })
         })
     }
