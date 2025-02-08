@@ -90,7 +90,7 @@ onUnmounted(() => {
             </div>
           </div>
           <div class="flex items-center gap-[21px] self-stretch">
-            <div class="flex items-start gap-[9px]"></div>
+            <div class="flex items-start gap-[9px]">ICI LES IMAGES</div>
             <div class="flex flex-col gap-[12px] items-center">
               <div v-for="tech in project.meta.techs"
                    :key="tech"
@@ -100,8 +100,12 @@ onUnmounted(() => {
               </div>
             </div>
           </div>
-          {{ project.description}}
         </div>
+<!--        <div class="flex justify-between items-end">
+          <div class="w-2/3">
+            {{ project.description }}
+          </div>
+        </div>-->
       </div>
     </div>
   </div>
