@@ -9,6 +9,15 @@ defineProps({
 
 const emit = defineEmits(["close"])
 
+const getIconName = (name) => {
+  const icons = {
+    github: 'mdi:github',
+    website: 'mdi:web',
+    // Ajoutez d'autres correspondances selon vos besoins
+  }
+  return icons[name] || 'mdi:link'
+}
+
 const scrollOffset = ref(window.scrollX - window.innerWidth)
 const updatePosition = () => {
   scrollOffset.value = window.scrollX - window.innerWidth
@@ -62,11 +71,11 @@ onUnmounted(() => {
 
 <template>
   <div
-      class="fixed h-screen w-screen backdrop-blur-sm top-0 z-50 transition-opacity duration-500"
+      class="fixed h-screen w-screen backdrop-blur-sm bg-white/30 top-0 z-50 transition-opacity duration-500"
       :style="{ left: `${scrollOffset}px`, opacity: isVisible ? '1' : '0' }"
   >
     <div
-        class="absolute min-w-2/3 min-h-full pl-20 py-5 transition-all duration-500 transform"
+        class="absolute min-w-2/3 min-h-full pl-20 py-5 transition-all duration-500 transform w-[75%]"
         :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
     >
       <div class="flex flex-col items-start gap-[27px]">
@@ -90,9 +99,17 @@ onUnmounted(() => {
             </div>
           </div>
           <div class="flex items-center gap-[21px] self-stretch">
-            <div class="flex items-start gap-[9px]">ICI LES IMAGES</div>
+            <div class="project-gallery max-w-[80%]">
+              <img
+                  v-for="(img, index) in project.gallery"
+                  :key="index"
+                  :src="img"
+                  :class="['project-gallery-image', `image-${index}`]"
+                  alt="Capture d'écran du projet"
+              />
+            </div>
             <div class="flex flex-col gap-[12px] items-center">
-              <div v-for="tech in project.meta.techs"
+              <div v-for="tech in project.techs"
                    :key="tech"
                    class="text-gray-500 self-stretch"
               >
@@ -101,12 +118,45 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-<!--        <div class="flex justify-between items-end">
-          <div class="w-2/3">
-            {{ project.description }}
+       <div class="flex justify-between items-end gap-10">
+          <div>
+            <ContentRenderer :value="project.body"/>
           </div>
-        </div>-->
+         <div class="flex flex-start gap-[10px]">
+           <div v-for="(url, name) in project.links" :key="name">
+             <a :href="url" target="_blank" class="hover:scale-5 transition"><Icon :name="getIconName(name)" class="min-w-10 min-h-10" /></a>
+           </div>
+         </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* Deux colonnes égales */
+  gap: 9px; /* Espacement entre les images */
+  align-items: start;
+  justify-content: center;
+}
+
+.project-gallery-image {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  object-position: top;
+  object-fit: cover;
+  max-height: 350px;
+}
+
+:deep(p) {
+  margin-bottom: 1.5rem; /* ou utilisez gap-6 si vous préférez les unités Tailwind */
+}
+
+/* Si vous voulez enlever la marge du dernier paragraphe */
+:deep(p:last-child) {
+  margin-bottom: 0;
+}
+</style>

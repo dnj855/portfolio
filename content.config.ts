@@ -9,6 +9,8 @@ export default defineContentConfig({
                 title: z.string(),
                 visible: z.string(),
                 techs: z.array(z.string()),
+                gallery: z.array(z.string()),
+                links: z.record(z.string()),
             })
         })
     }
