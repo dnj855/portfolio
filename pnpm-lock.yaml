@@ -29,6 +29,9 @@ importers:
       nuxt:
         specifier: ^3.15.3
         version: 3.15.3(@libsql/client@0.14.0)(@parcel/watcher@2.5.1)(@types/node@22.10.10)(better-sqlite3@11.8.1)(db0@0.2.1(@libsql/client@0.14.0)(better-sqlite3@11.8.1))(ioredis@5.4.2)(lightningcss@1.29.1)(magicast@0.3.5)(rollup@4.32.0)(terser@5.37.0)(typescript@5.7.3)(vite@6.0.11(@types/node@22.10.10)(jiti@2.4.2)(lightningcss@1.29.1)(terser@5.37.0)(yaml@2.7.0))(yaml@2.7.0)
+      swiper:
+        specifier: ^11.2.3
+        version: 11.2.3
       tailwindcss:
         specifier: ^4.0.0
         version: 4.0.0
@@ -3892,6 +3895,10 @@ packages:
     resolution: {integrity: sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
+
+  swiper@11.2.3:
+    resolution: {integrity: sha512-24m5tqHCd1Wmp9+86aKDoIGMsZGEjIL++3nuB1UjhAhIlvwj4k0Jikxu9PGQ/VswLpoje6JtMDWo12uu4aS2FA==}
+    engines: {node: '>= 4.7.0'}
 
   system-architecture@0.1.0:
     resolution: {integrity: sha512-ulAk51I9UVUyJgxlv9M6lFot2WP3e7t8Kz9+IS6D4rVba1tR9kON+Ey69f+1R4Q8cd45Lod6a4IcJIxnzGc/zA==}
@@ -9206,6 +9213,8 @@ snapshots:
       css-what: 6.1.0
       csso: 5.0.5
       picocolors: 1.1.1
+
+  swiper@11.2.3: {}
 
   system-architecture@0.1.0: {}
 

@@ -1,5 +1,13 @@
 // ProjectDetailsModal.vue
 <script setup>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/autoplay';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
 defineProps({
   project: {
     type: Object,
@@ -13,7 +21,6 @@ const getIconName = (name) => {
   const icons = {
     github: 'mdi:github',
     website: 'mdi:web',
-    // Ajoutez d'autres correspondances selon vos besoins
   }
   return icons[name] || 'mdi:link'
 }
@@ -99,15 +106,23 @@ onUnmounted(() => {
             </div>
           </div>
           <div class="flex items-center gap-[21px] self-stretch">
-            <div class="project-gallery max-w-[80%]">
-              <img
-                  v-for="(img, index) in project.gallery"
-                  :key="index"
+            <Swiper
+              :modules="[Autoplay, Pagination, Navigation]"
+              :slides-per-view="1"
+              :space-between="10"
+              class="project-gallery max-w-[80%]"
+              :autoplay="{ delay: 3000 }"
+              :pagination="{ clickable: true }"
+              navigation
+            >
+              <SwiperSlide v-for="(img, index) in project.gallery" :key="index">
+                <img
                   :src="img"
                   :class="['project-gallery-image', `image-${index}`]"
                   alt="Capture d'écran du projet"
-              />
-            </div>
+                />
+              </SwiperSlide>
+            </Swiper>
             <div class="flex flex-col gap-[12px] items-center">
               <div v-for="tech in project.techs"
                    :key="tech"
@@ -148,7 +163,6 @@ onUnmounted(() => {
   width: 100%;
   object-position: top;
   object-fit: cover;
-  max-height: 350px;
   aspect-ratio: 16 / 9;
 }
 
@@ -159,5 +173,11 @@ onUnmounted(() => {
 /* Si vous voulez enlever la marge du dernier paragraphe */
 :deep(p:last-child) {
   margin-bottom: 0;
+}
+
+/* Ajoutez des styles personnalisés pour les boutons de navigation si nécessaire */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000; /* Changez la couleur selon vos besoins */
 }
 </style>
