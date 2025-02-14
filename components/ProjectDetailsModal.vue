@@ -149,6 +149,7 @@ onUnmounted(() => {
   object-position: top;
   object-fit: cover;
   max-height: 350px;
+  aspect-ratio: 16 / 9;
 }
 
 :deep(p) {
