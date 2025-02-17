@@ -49,10 +49,10 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from "vue";
-import gsap from 'gsap'
+import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { onMounted, ref } from "vue";
 
 
 const sections = [
@@ -66,7 +66,7 @@ const sections = [
 const route = useRoute()
 const { data } = await useAsyncData(route.path, () => {
   return queryCollection('code')
-      .where('visible','=', true)
+      .where('visible','=', "true")
       .all()
 })
 
