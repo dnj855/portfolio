@@ -78,11 +78,11 @@ onUnmounted(() => {
 
 <template>
   <div
-      class="fixed h-screen w-screen backdrop-blur-sm bg-white/30 top-0 z-50 transition-opacity duration-500"
+      class="fixed h-screen w-screen backdrop-blur-sm bg-white/30 top-0 z-50 transition-opacity duration-500 overflow-y-auto"
       :style="{ left: `${scrollOffset}px`, opacity: isVisible ? '1' : '0' }"
   >
     <div
-        class="absolute min-w-2/3 min-h-full pl-20 py-5 transition-all duration-500 transform w-[75%]"
+        class="absolute min-w-2/3 pl-20 py-5 transition-all duration-500 transform w-[75%]"
         :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
     >
       <div class="flex flex-col items-start gap-[27px]">

@@ -3,13 +3,16 @@
     <div class="flex space-between min-w-full">
       <div class="w-1/3 tracking-tight text-base flex flex-col gap-5">
         <p>
-          Je développe des applications web qui donnent du sens à la technologie. Spécialisé dans la création de solutions B2B complexes, notamment pour les agences de communication, je transforme les défis RH en expériences fluides et intuitives.
+          Je conçois des applications web qui transforment la technologie en solutions concrètes et impactantes.
         </p>
         <p>
-          De HappyTasks, une PWA qui accompagne les familles d'enfants neuro-atypiques, aux plateformes métier sur mesure, chaque ligne de code est pensée avec une approche humaine et pragmatique.
+          Spécialisé dans la création de solutions B2B complexes, notamment pour les agences de communication, j’aide les entreprises à relever leurs défis RH en développant des outils fluides, intuitifs et efficaces.
         </p>
         <p>
-          Ruby, PHP ou JavaScript : la technologie s'adapte à votre vision, pas l'inverse.
+          De HappyTasks, une PWA qui accompagne les familles d'enfants neuro-atypiques, aux plateformes métier sur mesure, chaque projet allie expertise technique et approche humaine pour maximiser l'impact.
+        </p>
+        <p>
+          Ruby, PHP, JavaScript : j’adapte la technologie à votre vision, pour des solutions performantes et évolutives.
         </p>
       </div>
       <div class="ml-auto flex flex-col gap-0 menu">
