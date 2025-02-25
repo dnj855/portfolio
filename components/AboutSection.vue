@@ -34,7 +34,7 @@
         <!-- Photo à gauche -->
         <div class="col-span-1 about-photo-container">
           <div class="photo-frame rounded-xl overflow-hidden shadow-lg" ref="photoFrame">
-            <img src="https://placehold.co/400" alt="Cédric Lang-Roth" class="w-full h-full object-cover" />
+            <NuxtImg src="/img/cedric-lang-roth.webp" alt="Cédric Lang-Roth" class="w-full h-full object-cover object-top" loading="lazy"/>
           </div>
         </div>
         
