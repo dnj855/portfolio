@@ -12,11 +12,13 @@
       <CodeSection />
     </section>
 
-    <!-- Autres sections -->
-<!--    <section class="section" data-section="no-code">
+    <!-- Section No-Code -->
+    <section class="section" data-section="no-code">
       <NoCodeSection />
     </section>
-    <section class="section" data-section="formations">
+    
+    <!-- Autres sections -->
+<!--    <section class="section" data-section="formations">
       <FormationsSection />
     </section>
     <section class="section" data-section="about">
