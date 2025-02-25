@@ -18,13 +18,13 @@
     </section>
     
     <!-- Autres sections -->
-<!--    <section class="section" data-section="formations">
+    <section class="section" data-section="formations">
       <FormationsSection />
     </section>
     <section class="section" data-section="about">
       <AboutSection />
     </section>
-    <section class="section" data-section="contact">
+    <!-- <section class="section" data-section="contact">
       <ContactSection />
     </section>-->
   </div>
