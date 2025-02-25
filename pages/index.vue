@@ -24,9 +24,9 @@
     <section class="section" data-section="about">
       <AboutSection />
     </section>
-    <!-- <section class="section" data-section="contact">
+    <section class="section" data-section="contact">
       <ContactSection />
-    </section>-->
+    </section>
   </div>
 </template>
 
