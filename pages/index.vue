@@ -19,13 +19,19 @@
     
     <!-- Autres sections -->
     <section class="section" data-section="formations">
-      <FormationsSection />
+      <div class="section-content">
+        <FormationsSection />
+      </div>
     </section>
     <section class="section" data-section="about">
-      <AboutSection />
+      <div class="section-content">
+        <AboutSection />
+      </div>
     </section>
     <section class="section" data-section="contact">
-      <ContactSection />
+      <div class="section-content">
+        <ContactSection />
+      </div>
     </section>
   </div>
 </template>
@@ -37,6 +43,30 @@
   width: 100vw;
   height: 100vh;
   flex-shrink: 0;
+  overflow: hidden; /* Empêche le débordement vertical */
+}
+
+/* Style pour les conteneurs des sections à défilement interne */
+.section-content {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto; /* Permet le défilement interne */
+  overflow-x: hidden; /* Empêche le défilement horizontal à l'intérieur */
+  scrollbar-width: thin; /* Barre de défilement fine (Firefox) */
+}
+
+/* Personnalisation de la barre de défilement pour Chrome/Safari */
+.section-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.section-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.section-content::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 6px;
 }
 
 .sections-wrapper {
