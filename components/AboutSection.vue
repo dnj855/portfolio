@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full pl-20 pr-5 py-5 relative min-h-full max-sm:min-h-dvh">
+  <div class="flex flex-col w-full pl-20 pr-5 py-5 relative">
     <div class="flex space-between min-w-full">
       <div class="w-1/3 tracking-tight text-base flex flex-col gap-5">
         <p>
@@ -105,7 +105,7 @@
         <p class="mb-6 max-w-3xl mx-auto">
           Vous cherchez un développeur qui comprend réellement vos enjeux métier ? Contactez-moi pour discuter de votre projet ou de vos besoins en automatisation.
         </p>
-        <a href="#contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+        <a @click="scrollToSection('contact')" class="cursor-pointer inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
           Me contacter
         </a>
       </div>

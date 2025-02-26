@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full pl-20 pr-5 py-5 relative min-h-full max-sm:min-h-dvh">
+  <div class="flex flex-col w-full pl-20 pr-5 py-5 relative">
     <!-- En-tête avec description et menu -->
     <div class="flex space-between min-w-full">
       <div class="w-1/3 tracking-tight text-base flex flex-col gap-5">

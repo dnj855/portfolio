@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-full pl-20 pr-5 py-5 relative min-h-full max-sm:min-h-dvh">
+  <div class="flex flex-col w-full pl-20 pr-5 py-5 relative">
     <div class="flex space-between min-w-full">
       <div class="w-1/3 tracking-tight text-base flex flex-col gap-5">
         <p>
@@ -25,64 +25,72 @@
       </div>
     </div>
 
-    <!-- Contenu principal du contact -->
-    <div class="flex flex-col mt-16 gap-12" id="contact-content" ref="contactContent">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-        <!-- Coordonnées et Cal.com à gauche -->
-        <div class="contact-info-container">
-          <h2 class="text-3xl font-semibold mb-6">Mes coordonnées</h2>
+    <!-- Contenu principal du contact restructuré en trois colonnes -->
+    <div class="flex flex-col mt-16" id="contact-content" ref="contactContent">
+      <!-- Section à trois colonnes -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Colonne 1: Coordonnées -->
+        <div class="coordinates-container backdrop-blur-md bg-white/40 rounded-xl p-6 shadow-sm border border-gray-100">
+          <h2 class="text-2xl font-semibold mb-6">Mes coordonnées</h2>
           
-          <div class="contact-details mb-8">
-            <div class="flex items-center mb-4">
-              <div class="w-8 h-8 flex items-center justify-center mr-4">
+          <div class="flex flex-col space-y-6">
+            <div class="flex items-start">
+              <div class="w-8 h-8 flex items-center justify-center mr-4 mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <a href="mailto:contact@cedric-langroth.fr" class="text-blue-600 hover:underline">contact@cedric-langroth.fr</a>
+              <div>
+                <h3 class="text-sm font-medium text-gray-700 mb-1">Email</h3>
+                <a href="mailto:contact@clangroth.fr" class="text-blue-600 hover:underline">contact@clangroth.fr</a>
+              </div>
             </div>
             
-            <div class="flex items-center mb-4">
-              <div class="w-8 h-8 flex items-center justify-center mr-4">
+            <div class="flex items-start">
+              <div class="w-8 h-8 flex items-center justify-center mr-4 mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
-              <a href="tel:+33600000000" class="text-blue-600 hover:underline">06 00 00 00 00</a>
+              <div>
+                <h3 class="text-sm font-medium text-gray-700 mb-1">Téléphone</h3>
+                <a href="tel:+33688144084" class="text-blue-600 hover:underline">06 88 14 40 84</a>
+              </div>
             </div>
             
-            <div class="flex items-center mb-4">
-              <div class="w-8 h-8 flex items-center justify-center mr-4">
+            <div class="flex items-start">
+              <div class="w-8 h-8 flex items-center justify-center mr-4 mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <span>Paris, France</span>
+              <div>
+                <h3 class="text-sm font-medium text-gray-700 mb-1">Localisation</h3>
+                <span>Rouen, France</span>
+              </div>
             </div>
             
-            <div class="flex items-center">
-              <div class="w-8 h-8 flex items-center justify-center mr-4">
+            <div class="flex items-start">
+              <div class="w-8 h-8 flex items-center justify-center mr-4 mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 015.656 0l4 4a4 4 0 01-5.656 5.656l-1.102-1.101" />
                 </svg>
               </div>
-              <a href="https://www.linkedin.com/in/cedriclangroth/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">LinkedIn</a>
+              <div>
+                <h3 class="text-sm font-medium text-gray-700 mb-1">LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/clangroth/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">linkedin.com/in/clangroth</a>
+              </div>
             </div>
-          </div>
-          
-          <h2 class="text-3xl font-semibold mb-6">Réservez un appel découverte</h2>
-          <div class="cal-embed rounded-xl overflow-hidden shadow-lg" style="height: 650px;">
-            <!-- Intégration Cal.com -->
-            <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline"></div>
           </div>
         </div>
         
-        <!-- Formulaire de contact à droite -->
-        <div class="contact-form-container">
-          <h2 class="text-3xl font-semibold mb-6">Envoyez-moi un message</h2>
-          <form @submit.prevent="submitForm" class="space-y-6" ref="contactForm">
+        <!-- Colonne 2: Formulaire de contact -->
+        <div class="contact-form-container backdrop-blur-md bg-white/40 rounded-xl p-6 shadow-sm border border-gray-100">
+          <h2 class="text-2xl font-semibold mb-6">Envoyez-moi un message</h2>
+          <form @submit.prevent="submitForm" class="space-y-4" ref="contactForm">
             <div class="form-group">
               <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
               <input 
@@ -121,7 +129,7 @@
               <textarea 
                 id="message" 
                 v-model="formData.message" 
-                rows="8" 
+                rows="6" 
                 required
                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               ></textarea>
@@ -130,7 +138,7 @@
             <div class="form-group">
               <button 
                 type="submit" 
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition duration-300 transform hover:scale-105"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition duration-300"
                 :disabled="isSubmitting"
               >
                 {{ isSubmitting ? 'Envoi en cours...' : 'Envoyer' }}
@@ -142,6 +150,32 @@
             </div>
           </form>
         </div>
+        
+        <!-- Colonne 3: Réservation Cal.com -->
+        <div class="reservation-container backdrop-blur-md bg-white/30 rounded-xl p-6 shadow-sm border border-gray-100">
+          <h2 class="text-2xl font-semibold mb-6">Réservez un appel découverte</h2>
+          <div class="cal-button-container">
+            <button 
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition duration-300"
+              data-cal-link="clangroth/automatisation-rh"
+              data-cal-namespace="automatisation-rh"
+              data-cal-config='{"layout":"month_view"}'
+            >
+              Réserver un créneau
+            </button>
+            <div class="mt-6 space-y-4">
+              <p class="text-gray-600">Cliquez sur le bouton ci-dessus pour ouvrir le calendrier et choisir un créneau qui vous convient.</p>
+              <p class="text-gray-600">Cet appel découverte gratuit de 30 minutes nous permettra de :</p>
+              <ul class="list-disc list-inside text-gray-600 space-y-2 pl-2">
+                <li>Discuter de votre projet en détail</li>
+                <li>Identifier vos besoins spécifiques</li>
+                <li>Explorer les solutions adaptées</li>
+                <li>Définir les prochaines étapes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -272,40 +306,8 @@ onMounted(() => {
   // Initialisation de Cal.com avec la méthode recommandée
   const calInitScript = document.createElement('script');
   calInitScript.innerHTML = `
-    (function (C, A, L) { 
-      let p = function (a, ar) { a.q.push(ar); }; 
-      let d = C.document; 
-      C.Cal = C.Cal || function () { 
-        let cal = C.Cal; 
-        let ar = arguments; 
-        if (!cal.loaded) { 
-          cal.ns = {}; 
-          cal.q = cal.q || []; 
-          d.head.appendChild(d.createElement("script")).src = A; 
-          cal.loaded = true; 
-        } 
-        if (ar[0] === L) { 
-          const api = function () { p(api, arguments); }; 
-          const namespace = ar[1]; 
-          api.q = api.q || []; 
-          if(typeof namespace === "string") {
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar);
-            p(cal, ["initNamespace", namespace]);
-          } else p(cal, ar); 
-          return;
-        } 
-        p(cal, ar); 
-      };
-    })(window, "https://app.cal.com/embed/embed.js", "init");
-    
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "automatisation-rh", {origin:"https://cal.com"});
-    
-    Cal.ns["automatisation-rh"]("inline", {
-      elementOrSelector:"#my-cal-inline",
-      config: {"layout":"month_view"},
-      calLink: "clangroth/automatisation-rh",
-    });
     
     Cal.ns["automatisation-rh"]("ui", {"hideEventTypeDetails":true,"layout":"column_view"});
   `;
@@ -339,13 +341,8 @@ onMounted(() => {
   font-family: "Montserrat", sans-serif;
 }
 
-.contact-info-container, .contact-form-container {
-  transition: transform 0.3s ease;
-}
-
-.contact-info-container:hover, .contact-form-container:hover {
-  transform: translateY(-5px);
-}
+/* Suppression des effets de translation au hover */
+/* Les transitions de couleur et autres effets sont conservés */
 
 /* Styles responsifs pour mobile */
 @media (max-width: 768px) {
@@ -356,5 +353,15 @@ onMounted(() => {
   .menu .active {
     font-size: 64px;
   }
+}
+
+/* Ajout de styles pour l'effet de flou */
+.coordinates-container, .contact-form-container, .reservation-container {
+  transition: all 0.3s ease;
+}
+
+.coordinates-container:hover, .reservation-container:hover, .contact-form-container:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 </style> 
