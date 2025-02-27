@@ -17,7 +17,7 @@
             <button
                 v-for="section in sections"
                 :key="section.id"
-                @click="scrollToSection(section.id)"
+                @click="navigateToSection(section.id)"
                 class="heading-menu text-left"
             >
               {{ section.label }}
@@ -30,6 +30,10 @@
 </template>
 
 <script setup>
+import { useNuxtApp, useRouter } from '#app';
+const router = useRouter()
+const nuxtApp = useNuxtApp()
+
 const sections = [
       {id: 'code', label: 'CODE'},
       {id: 'no-code', label: 'NO-CODE'},
@@ -37,26 +41,14 @@ const sections = [
       {id: 'about', label: 'À PROPOS'},
       {id: 'contact', label: 'CONTACT'}
     ]
-import gsap from 'gsap'
-import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
-gsap.registerPlugin(ScrollToPlugin);
-
-const scrollToSection = (sectionId) => {
-  const section = document.querySelector(`[data-section="${sectionId}"]`)
-  if (section) {
-    const offsetLeft = section.offsetLeft
-    console.log(offsetLeft)
-    const maxScroll = document.querySelector('.sections-wrapper').scrollWidth - window.innerWidth
-
-    gsap.to(window, {
-      duration: 1.5,
-      ease: 'power2.inOut',
-      scrollTo: {
-        x: offsetLeft,
-        autoKill: false
-      }
-    })
+const navigateToSection = (sectionId) => {
+  // Mettre à jour l'URL avec un hash
+  router.push({ path: '/', hash: `#${sectionId}` })
+  
+  // Utiliser le plugin global pour le défilement, avec force:true pour permettre le défilement continu
+  if (nuxtApp.$scrollToSection) {
+    nuxtApp.$scrollToSection(sectionId, { force: true })
   }
 }
 </script>
