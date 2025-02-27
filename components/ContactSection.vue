@@ -189,7 +189,6 @@ import { onMounted, ref } from "vue";
 
 const sections = [
   { id: 'contact', label: 'Contact', active: true },
-  { id: 'home', label: 'Accueil' },
   { id: 'code', label: 'Code' },
   { id: 'no-code', label: 'No-Code' },
   { id: 'formations', label: 'Formations' },
