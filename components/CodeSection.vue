@@ -6,30 +6,19 @@
           Je conçois des applications web qui transforment la technologie en solutions concrètes et impactantes.
         </p>
         <p>
-          Spécialisé dans la création de solutions B2B complexes, notamment pour les agences de communication, j’aide les entreprises à relever leurs défis RH en développant des outils fluides, intuitifs et efficaces.
+          Spécialisé dans la création de solutions B2B complexes, notamment pour les agences de communication, j'aide les entreprises à relever leurs défis RH en développant des outils fluides, intuitifs et efficaces.
         </p>
         <p>
           De HappyTasks, une PWA qui accompagne les familles d'enfants neuro-atypiques, aux plateformes métier sur mesure, chaque projet allie expertise technique et approche humaine pour maximiser l'impact.
         </p>
         <p>
-          Ruby, PHP, JavaScript : j’adapte la technologie à votre vision, pour des solutions performantes et évolutives.
+          Ruby, PHP, JavaScript : j'adapte la technologie à votre vision, pour des solutions performantes et évolutives.
         </p>
-      </div>
-      <div class="ml-auto flex flex-col gap-0 menu">
-        <button
-            v-for="section in sections"
-            :key="section.id"
-            @click="scrollToSection(section.id)"
-            class="text-right"
-        >
-          <h1 v-if="section.active" class="active"> {{ section.label.toUpperCase() }} </h1>
-          <span v-else class="hover:italic">{{ section.label }}</span>
-        </button>
       </div>
     </div>
 
     <!-- Liste des projets -->
-    <div class="flex flex-col mt-auto text-right gap-[25px] content-center items-end" id="projects" ref="projectsList">
+       <div class="flex flex-col mt-auto text-right gap-[25px] content-center items-end" id="projects" ref="projectsList">
       <div v-for="(project, id) in data" :key="id" @click="showProjectDetails(project)" class="cursor-pointer hover:italic">
         <div class="flex items-center gap-[2px]">
           <div class="flex flex-col items-end">
@@ -57,15 +46,6 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { onMounted, ref } from "vue";
 
-
-const sections = [
-  { id: 'code', label: 'Code', active: true },
-  { id: 'no-code', label: 'No-Code' },
-  { id: 'formations', label: 'Formations' },
-  { id: 'about', label: 'À propos' },
-  { id: 'contact', label: 'Contact' }
-]
-
 const route = useRoute()
 const { data } = await useAsyncData(route.path, () => {
   return queryCollection('code')
@@ -75,23 +55,6 @@ const { data } = await useAsyncData(route.path, () => {
 
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
-
-const scrollToSection = (sectionId) => {
-  const section = document.querySelector(`[data-section="${sectionId}"]`)
-  if (section) {
-    const offsetLeft = section.offsetLeft
-    const maxScroll = document.querySelector('.sections-wrapper').scrollWidth - window.innerWidth
-
-    gsap.to(window, {
-      duration: 1.5,
-      ease: 'power2.inOut',
-      scrollTo: {
-        x: offsetLeft,
-        autoKill: false
-      }
-    })
-  }
-}
 
 const projectsList = ref(null)
 

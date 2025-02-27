@@ -15,17 +15,6 @@
           De l'automatisation des tâches répétitives à la création de tableaux de bord personnalisés, j'optimise les flux de travail pour une productivité maximale.
         </p>
       </div>
-      <div class="ml-auto flex flex-col gap-0 menu">
-        <button
-            v-for="section in sections"
-            :key="section.id"
-            @click="scrollToSection(section.id)"
-            class="text-right"
-        >
-          <h1 v-if="section.active" class="active"> {{ section.label.toUpperCase() }} </h1>
-          <span v-else class="hover:italic">{{ section.label }}</span>
-        </button>
-      </div>
     </div>
 
     <!-- Liste des projets avec accordéon -->
@@ -81,15 +70,6 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { onMounted, ref } from "vue";
 
-const sections = [
-  { id: 'no-code', label: 'No-Code', active: true },
-  { id: 'code', label: 'Code' },
-  { id: 'formations', label: 'Formations' },
-  { id: 'about', label: 'À propos' },
-  { id: 'contact', label: 'Contact' }
-]
-
-const route = useRoute()
 const { data } = await useAsyncData('nocode-projects', () => {
   return queryCollection('nocode')
       .all()
@@ -98,25 +78,8 @@ const { data } = await useAsyncData('nocode-projects', () => {
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
-const scrollToSection = (sectionId) => {
-  const section = document.querySelector(`[data-section="${sectionId}"]`)
-  if (section) {
-    const offsetLeft = section.offsetLeft
-    const maxScroll = document.querySelector('.sections-wrapper').scrollWidth - window.innerWidth
-
-    gsap.to(window, {
-      duration: 1.5,
-      ease: 'power2.inOut',
-      scrollTo: {
-        x: offsetLeft,
-        autoKill: false
-      }
-    })
-  }
-}
-
-const projectsList = ref(null)
-const openProjectId = ref(null)
+const projectsList = ref(null);
+const openProjectId = ref(null);
 
 // Fonction pour ouvrir/fermer l'accordéon d'un projet
 const toggleProject = (id) => {

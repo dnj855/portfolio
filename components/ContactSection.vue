@@ -12,17 +12,6 @@
           Je serai ravi de mettre mon expertise technique et ma compréhension des besoins business à votre service.
         </p>
       </div>
-      <div class="ml-auto flex flex-col gap-0 menu">
-        <button
-            v-for="section in sections"
-            :key="section.id"
-            @click="scrollToSection(section.id)"
-            class="text-right"
-        >
-          <h1 v-if="section.active" class="active"> {{ section.label.toUpperCase() }} </h1>
-          <span v-else class="hover:italic">{{ section.label }}</span>
-        </button>
-      </div>
     </div>
 
     <!-- Contenu principal du contact restructuré en trois colonnes -->
@@ -187,33 +176,8 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { onMounted, ref } from "vue";
 
-const sections = [
-  { id: 'contact', label: 'Contact', active: true },
-  { id: 'code', label: 'Code' },
-  { id: 'no-code', label: 'No-Code' },
-  { id: 'formations', label: 'Formations' },
-  { id: 'about', label: 'À propos' }
-]
-
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
-
-const scrollToSection = (sectionId) => {
-  const section = document.querySelector(`[data-section="${sectionId}"]`)
-  if (section) {
-    const offsetLeft = section.offsetLeft
-    const maxScroll = document.querySelector('.sections-wrapper').scrollWidth - window.innerWidth
-
-    gsap.to(window, {
-      duration: 1.5,
-      ease: 'power2.inOut',
-      scrollTo: {
-        x: offsetLeft,
-        autoKill: false
-      }
-    })
-  }
-}
 
 // Formulaire de contact
 const formData = ref({
@@ -315,52 +279,45 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.menu {
-  font-family: "Poppins", sans-serif;
-  text-align: right;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: -1.2px;
+/* Styles pour les conteneurs */
+.coordinates-container, .form-container, .reservation-container {
+  height: 100%;
+  transition: transform 0.3s ease;
 }
 
-.menu button {
-  cursor: pointer;
+.coordinates-container:hover, .form-container:hover, .reservation-container:hover {
+  transform: translateY(-5px);
 }
 
-.menu .active {
-  font-size: 128px;
-  font-weight: 600;
-  line-height: 70.853%;
-  letter-spacing: -6.4px;
+/* Animation des éléments */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.form-group label {
-  font-family: "Montserrat", sans-serif;
+.form-group {
+  margin-bottom: 1.5rem;
 }
 
-/* Suppression des effets de translation au hover */
-/* Les transitions de couleur et autres effets sont conservés */
+/* Styles pour Cal.com */
+.cal-button-container {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
 
-/* Styles responsifs pour mobile */
+/* Responsive */
 @media (max-width: 768px) {
-  .grid {
+  .grid-cols-3 {
     grid-template-columns: 1fr;
   }
   
-  .menu .active {
-    font-size: 64px;
+  .coordinates-container, .form-container, .reservation-container {
+    margin-bottom: 2rem;
   }
-}
-
-/* Ajout de styles pour l'effet de flou */
-.coordinates-container, .contact-form-container, .reservation-container {
-  transition: all 0.3s ease;
-}
-
-.coordinates-container:hover, .reservation-container:hover, .contact-form-container:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 </style> 
