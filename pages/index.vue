@@ -1,6 +1,7 @@
 <!-- pages/index.vue -->
 <template>
     <LogoComponent v-model:currentSection="currentSection" />
+    <GlobalMenu v-if="currentSection !== 'home'" :currentSection="currentSection" />
   <div class="sections-wrapper">
     <!-- Section Home - Votre design original -->
     <section class="section" data-section="home" ref="homeSection">
@@ -9,12 +10,16 @@
 
     <!-- Section Code -->
     <section class="section" data-section="code">
-      <CodeSection />
+      <div class="section-content">
+        <CodeSection />
+      </div>
     </section>
 
     <!-- Section No-Code -->
     <section class="section" data-section="no-code">
-      <NoCodeSection />
+      <div class="section-content">
+        <NoCodeSection />
+      </div>
     </section>
     
     <!-- Autres sections -->

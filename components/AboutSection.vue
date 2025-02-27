@@ -15,17 +15,6 @@
           Mon approche : écoute bienveillante, adaptabilité technique et efficacité opérationnelle pour créer des outils qui vous servent vraiment.
         </p>
       </div>
-      <div class="ml-auto flex flex-col gap-0 menu">
-        <button
-            v-for="section in sections"
-            :key="section.id"
-            @click="scrollToSection(section.id)"
-            class="text-right"
-        >
-          <h1 v-if="section.active" class="active"> {{ section.label.toUpperCase() }} </h1>
-          <span v-else class="hover:italic">{{ section.label }}</span>
-        </button>
-      </div>
     </div>
 
     <!-- Contenu principal avec bio et photo -->
@@ -119,17 +108,10 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { onMounted, ref } from "vue";
 
-const sections = [
-  { id: 'about', label: 'À propos', active: true },
-  { id: 'code', label: 'Code' },
-  { id: 'no-code', label: 'No-Code' },
-  { id: 'formations', label: 'Formations' },
-  { id: 'contact', label: 'Contact' }
-]
-
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
+// Fonction pour défiler vers la section de contact
 const scrollToSection = (sectionId) => {
   const section = document.querySelector(`[data-section="${sectionId}"]`)
   if (section) {
@@ -193,27 +175,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.menu {
-  font-family: "Poppins", sans-serif;
-  text-align: right;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: -1.2px;
-}
-
-.menu button {
-  cursor: pointer;
-}
-
-.menu .active {
-  font-size: 128px;
-  font-weight: 600;
-  line-height: 70.853%;
-  letter-spacing: -6.4px;
-}
-
+/* Styles pour la photo et la biographie */
 .photo-frame {
   height: 400px;
   transition: transform 0.5s ease;

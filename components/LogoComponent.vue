@@ -1,6 +1,6 @@
 <template>
   <div :class="[
-      'logo absolute fixed -translate-x-1/3 translate-y-[400%] z-100 transition transition-all duration-300',
+      'logo absolute fixed -translate-x-1/3 translate-y-[400%] z-100 transition-all duration-300',
 { 'opacity-0': currentSection === 'home'}]">
     <h2 class="text-base font-sans font-semibold sticky rotate-270 top-10 cursor-pointer" @click="navigateToHome()">CÉDRIC LANG-ROTH</h2>
   </div>

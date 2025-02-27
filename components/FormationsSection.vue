@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col w-full pl-20 pr-5 py-5 relative">
-    <!-- En-tête avec description et menu -->
+    <!-- En-tête avec description -->
     <div class="flex space-between min-w-full">
       <div class="w-1/3 tracking-tight text-base flex flex-col gap-5">
         <p>
@@ -15,17 +15,6 @@
         <p>
           Mon approche pédagogique favorise l'apprentissage par la pratique, pour une assimilation durable des compétences.
         </p>
-      </div>
-      <div class="ml-auto flex flex-col gap-0 menu">
-        <button
-            v-for="section in sections"
-            :key="section.id"
-            @click="scrollToSection(section.id)"
-            class="text-right"
-        >
-          <h1 v-if="section.active" class="active"> {{ section.label.toUpperCase() }} </h1>
-          <span v-else class="hover:italic">{{ section.label }}</span>
-        </button>
       </div>
     </div>
 
@@ -134,33 +123,8 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { computed, onMounted, ref } from "vue";
 
-const sections = [
-  { id: 'formations', label: 'Formations', active: true },
-  { id: 'code', label: 'Code' },
-  { id: 'no-code', label: 'No-Code' },
-  { id: 'about', label: 'À propos' },
-  { id: 'contact', label: 'Contact' }
-]
-
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
-
-const scrollToSection = (sectionId) => {
-  const section = document.querySelector(`[data-section="${sectionId}"]`)
-  if (section) {
-    const offsetLeft = section.offsetLeft
-    const maxScroll = document.querySelector('.sections-wrapper').scrollWidth - window.innerWidth
-
-    gsap.to(window, {
-      duration: 1.5,
-      ease: 'power2.inOut',
-      scrollTo: {
-        x: offsetLeft,
-        autoKill: false
-      }
-    })
-  }
-}
 
 const formationsContent = ref(null)
 
