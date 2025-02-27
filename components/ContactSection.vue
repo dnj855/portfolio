@@ -63,10 +63,7 @@
             
             <div class="flex items-start">
               <div class="w-8 h-8 flex items-center justify-center mr-4 mt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 015.656 0l4 4a4 4 0 01-5.656 5.656l-1.102-1.101" />
-                </svg>
+                <NuxtImg src="/linkedin.png" alt="LinkedIn" class="w-6 h-6" />
               </div>
               <div>
                 <h3 class="text-sm font-medium text-gray-700 mb-1">LinkedIn</h3>
@@ -145,7 +142,7 @@
           <h2 class="text-2xl font-semibold mb-6">Réservez un appel découverte</h2>
           <div class="cal-button-container">
             <button 
-              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition duration-300"
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-full transition duration-300 cursor-pointer"
               data-cal-link="clangroth/automatisation-rh"
               data-cal-namespace="automatisation-rh"
               data-cal-config='{"layout":"month_view"}'
@@ -282,12 +279,8 @@ onMounted(() => {
 /* Styles pour les conteneurs */
 .coordinates-container, .form-container, .reservation-container {
   height: 100%;
-  transition: transform 0.3s ease;
 }
 
-.coordinates-container:hover, .form-container:hover, .reservation-container:hover {
-  transform: translateY(-5px);
-}
 
 /* Animation des éléments */
 @keyframes fadeInUp {

@@ -24,7 +24,7 @@
       <!-- Catégories de formations -->
       <div class="grid grid-cols-3 gap-10 mb-20">
         <!-- Développement -->
-        <div class="formation-category bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex flex-col h-full">
+        <div class="formation-category backdrop-blur-md bg-white/40 rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition duration-300 flex flex-col h-full">
           <h2 class="text-3xl font-semibold mb-6 text-center">Développement</h2>
           <div class="flex flex-col gap-5 flex-1">
             <div v-for="formation in devFormations" :key="formation.title" class="formation-item p-4 border-b border-gray-100">
@@ -40,7 +40,7 @@
         </div>
 
         <!-- No-Code -->
-        <div class="formation-category bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex flex-col h-full">
+        <div class="formation-category backdrop-blur-md bg-white/40 rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition duration-300 flex flex-col h-full">
           <h2 class="text-3xl font-semibold mb-6 text-center">No-Code</h2>
           <div class="flex flex-col gap-5 flex-1">
             <div v-for="formation in noCodeFormations" :key="formation.title" class="formation-item p-4 border-b border-gray-100">
@@ -56,7 +56,7 @@
         </div>
 
         <!-- Journalisme -->
-        <div class="formation-category bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex flex-col h-full">
+        <div class="formation-category backdrop-blur-md bg-white/40 rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition duration-300 flex flex-col h-full">
           <h2 class="text-3xl font-semibold mb-6 text-center">Journalisme</h2>
           <div class="flex flex-col gap-5 flex-1">
             <div v-for="formation in journalismeFormations" :key="formation.title" class="formation-item p-4 border-b border-gray-100">
