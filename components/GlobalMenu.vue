@@ -1,5 +1,10 @@
 <template>
-  <nav class="ml-auto flex flex-col gap-0 menu fixed top-0 right-0 p-6 z-50" :class="{ 'menu-hidden': isScrollingDown }">
+  <nav class="
+    ml-auto flex flex-col gap-0 menu fixed top-0 right-0 p-6 z-50 transition-all duration-300" :class="
+    { 'menu-hidden': isScrollingDown,
+      'hidden': currentSection === 'home'
+    }
+    ">
       <button
         v-for="section in sections"
         :key="section.id"
@@ -257,5 +262,8 @@ const navigateToSection = (sectionId) => {
   line-height: 70.853%;
   letter-spacing: -6.4px;
   text-transform: uppercase;
+  &:hover {
+    font-style: normal;
+  }
 }
 </style> 
