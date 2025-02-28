@@ -33,7 +33,10 @@ const isVisible = ref(false)
 
 onMounted(() => {
   nextTick(() => {
-    isVisible.value = true
+    // Un petit délai permet de s'assurer que toutes les animations se déclenchent correctement
+    setTimeout(() => {
+      isVisible.value = true
+    }, 50)
   })
 })
 
@@ -92,13 +95,19 @@ onUnmounted(() => {
 
 <template>
   <div
-      class="fixed h-screen w-screen top-0 z-[9999] transition-opacity duration-500 overflow-y-auto cursor-pointer"
+      class="fixed h-screen w-screen top-0 z-[9999] transition-all duration-500 overflow-y-auto cursor-pointer"
       :style="{ left: `${scrollOffset}px`, opacity: isVisible ? '1' : '0' }"
       @click="handleBackdropClick"
   >
     <div
-        class="absolute min-w-2/3 p-8 transition-all duration-500 transform w-[80%] max-w-[1400px] left-1/2 -translate-x-1/2 backdrop-blur-md bg-white/60 rounded-xl shadow-2xl border border-white/20 cursor-default"
-        :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
+        class="fixed p-8 w-[80%] max-w-[1400px] top-20 left-0 right-0 mx-auto bg-white/60 rounded-xl shadow-2xl border border-white/20 cursor-default modal-animation max-h-[80vh] overflow-y-auto"
+        :style="{
+          transform: `translateY(${isVisible ? '0' : '20px'})`,
+          opacity: isVisible ? 1 : 0,
+          backdropFilter: `blur(${isVisible ? 12 : 0}px)`,
+          borderColor: 'rgba(255, 255, 255, 0.4)',
+          borderWidth: '1px',
+        }"
     >
       <div class="flex flex-col items-start gap-[27px]">
         <div class="flex flex-col items-start self-stretch gap-[27px]">
@@ -139,7 +148,9 @@ onUnmounted(() => {
               </SwiperSlide>
             </Swiper>
             <div class="flex flex-col gap-4 md:w-1/3">
-              <div class="bg-white/70 backdrop-blur-sm p-4 rounded-lg shadow-md">
+              <div class="bg-white/70 p-4 rounded-lg shadow-md child-element border border-white/40"
+                   :style="{ backdropFilter: `blur(${isVisible ? 6 : 0}px)` }"
+              >
                 <h3 class="text-xl font-medium mb-2">Technologies</h3>
                 <div class="flex flex-wrap gap-2">
                   <span
@@ -151,7 +162,10 @@ onUnmounted(() => {
                   </span>
                 </div>
               </div>
-              <div v-if="project.links" class="bg-white/70 backdrop-blur-sm p-4 rounded-lg shadow-md">
+              <div v-if="project.links" 
+                   class="bg-white/70 p-4 rounded-lg shadow-md child-element border border-white/40"
+                   :style="{ backdropFilter: `blur(${isVisible ? 6 : 0}px)` }"
+              >
                 <h3 class="text-xl font-medium mb-2">Liens</h3>
                 <div class="flex flex-wrap gap-4">
                   <a 
@@ -169,7 +183,9 @@ onUnmounted(() => {
             </div>
           </div>
         </div>
-        <div class="mt-6 bg-white/70 backdrop-blur-sm p-6 rounded-lg shadow-md w-full">
+        <div class="mt-6 bg-white/70 p-6 rounded-lg shadow-md w-full child-element border border-white/40"
+             :style="{ backdropFilter: `blur(${isVisible ? 6 : 0}px)` }"
+        >
           <ContentRenderer :value="project.body" class="prose max-w-none"/>
         </div>
       </div>
@@ -190,6 +206,16 @@ onUnmounted(() => {
   object-position: top;
   object-fit: cover;
   aspect-ratio: 16 / 9;
+}
+
+.modal-animation {
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), 
+              opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1), 
+              backdrop-filter 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.child-element {
+  transition: backdrop-filter 0.65s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 :deep(p) {

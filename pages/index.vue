@@ -1,7 +1,7 @@
 <!-- pages/index.vue -->
 <template>
     <LogoComponent v-model:currentSection="currentSection" />
-    <GlobalMenu v-if="currentSection !== 'home'" :currentSection="currentSection" />
+    <GlobalMenu :currentSection="currentSection" />
   <div class="sections-wrapper">
     <!-- Section Home - Votre design original -->
     <section class="section" data-section="home" ref="homeSection">
