@@ -1,10 +1,11 @@
 <template>
-  <nav class="
-    ml-auto flex flex-col gap-0 menu fixed top-0 right-0 p-6 z-50 transition-all duration-300" :class="
-    { 'menu-hidden': isScrollingDown,
-      'hidden': currentSection === 'home'
-    }
-    ">
+  <nav class="ml-auto flex flex-col gap-0 menu fixed top-0 right-0 p-6 z-50"
+       :class="{ 'menu-hidden': isScrollingDown && currentSection !== 'home' }"
+       :style="{
+         opacity: currentSection === 'home' ? '0' : '1',
+         pointerEvents: currentSection === 'home' ? 'none' : 'auto',
+         transition: 'opacity 0.5s ease-in-out, transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1)'
+       }">
       <button
         v-for="section in sections"
         :key="section.id"
@@ -245,7 +246,6 @@ const navigateToSection = (sectionId) => {
   font-weight: 400;
   line-height: normal;
   letter-spacing: -1.2px;
-  transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .menu-hidden {

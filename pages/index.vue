@@ -77,6 +77,18 @@
   display: flex;
   height: 100%;
   will-change: transform;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Animation pour l'entrée et la sortie des sections */
+.section {
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+/* Animation spécifique pour la page d'accueil */
+.section[data-section="home"] {
+  transition-delay: 0.1s;
 }
 </style>
 
