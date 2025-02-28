@@ -1,8 +1,9 @@
 <template>
   <div :class="[
-      'logo absolute fixed -translate-x-1/3 translate-y-[400%] z-100 transition-all duration-300',
-    { 'hidden': currentSection === 'home'}
-    ]">
+      'logo absolute fixed -translate-x-1/3 translate-y-[400%] z-100',
+      { 'opacity-0 pointer-events-none': currentSection === 'home', 'opacity-100': currentSection !== 'home' }
+    ]"
+    style="transition: opacity 0.5s ease-in-out;">
     <h2 class="text-base font-sans font-semibold sticky rotate-270 top-10 cursor-pointer" @click="navigateToHome()">CÉDRIC LANG-ROTH</h2>
   </div>
 </template>
