@@ -54,35 +54,50 @@ const handleClose = () => {
   }, 500) // Durée correspondant à la transition
 }
 
+// Fermeture en cliquant sur l'arrière-plan
+const handleBackdropClick = (event) => {
+  // S'assurer que le clic est bien sur le backdrop et pas sur le contenu de la modale
+  if (event.target === event.currentTarget) {
+    handleClose()
+  }
+}
+
 onMounted(() => {
   window.addEventListener('scroll', updatePosition)
   initialScrollPosition = window.scrollX
   window.addEventListener('scroll', preventScroll)
 
+  // Désactiver les interactions avec les éléments sous-jacents
   const sectionsWrapper = document.querySelector('.sections-wrapper')
   if (sectionsWrapper) {
     sectionsWrapper.style.pointerEvents = 'none'
   }
+  
+  // Note: nous gardons le menu visible mais il sera sous la modale grâce au z-index élevé
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', updatePosition)
   window.removeEventListener('scroll', preventScroll)
 
+  // Réactiver les interactions
   const sectionsWrapper = document.querySelector('.sections-wrapper')
   if (sectionsWrapper) {
     sectionsWrapper.style.pointerEvents = 'auto'
   }
+  
+  // Note: pas besoin de code supplémentaire pour le menu car il est resté visible
 })
 </script>
 
 <template>
   <div
-      class="fixed h-screen w-screen backdrop-blur-sm bg-white/30 top-0 z-50 transition-opacity duration-500 overflow-y-auto"
+      class="fixed h-screen w-screen top-0 z-[9999] transition-opacity duration-500 overflow-y-auto cursor-pointer"
       :style="{ left: `${scrollOffset}px`, opacity: isVisible ? '1' : '0' }"
+      @click="handleBackdropClick"
   >
     <div
-        class="absolute min-w-2/3 pl-20 py-5 transition-all duration-500 transform w-[75%]"
+        class="absolute min-w-2/3 p-8 transition-all duration-500 transform w-[80%] max-w-[1400px] left-1/2 -translate-x-1/2 backdrop-blur-md bg-white/60 rounded-xl shadow-2xl border border-white/20 cursor-default"
         :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
     >
       <div class="flex flex-col items-start gap-[27px]">
@@ -105,12 +120,12 @@ onUnmounted(() => {
               </svg>
             </div>
           </div>
-          <div class="flex items-center gap-[21px] self-stretch">
+          <div class="flex items-start gap-8 self-stretch flex-wrap md:flex-nowrap">
             <Swiper
               :modules="[Autoplay, Pagination, Navigation]"
               :slides-per-view="1"
               :space-between="10"
-              class="project-gallery max-w-[80%]"
+              class="project-gallery md:w-2/3"
               :autoplay="{ delay: 3000 }"
               :pagination="{ clickable: true }"
               navigation
@@ -118,30 +133,44 @@ onUnmounted(() => {
               <SwiperSlide v-for="(img, index) in project.gallery" :key="index">
                 <img
                   :src="img"
-                  :class="['project-gallery-image', `image-${index}`]"
+                  :class="['project-gallery-image rounded-lg', `image-${index}`]"
                   alt="Capture d'écran du projet"
                 />
               </SwiperSlide>
             </Swiper>
-            <div class="flex flex-col gap-[12px] items-center">
-              <div v-for="tech in project.techs"
-                   :key="tech"
-                   class="text-gray-500 self-stretch"
-              >
-                {{ tech }}
+            <div class="flex flex-col gap-4 md:w-1/3">
+              <div class="bg-white/70 backdrop-blur-sm p-4 rounded-lg shadow-md">
+                <h3 class="text-xl font-medium mb-2">Technologies</h3>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    v-for="tech in project.techs"
+                    :key="tech"
+                    class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium"
+                  >
+                    {{ tech }}
+                  </span>
+                </div>
+              </div>
+              <div v-if="project.links" class="bg-white/70 backdrop-blur-sm p-4 rounded-lg shadow-md">
+                <h3 class="text-xl font-medium mb-2">Liens</h3>
+                <div class="flex flex-wrap gap-4">
+                  <a 
+                    v-for="(url, name) in project.links" 
+                    :key="name" 
+                    :href="url" 
+                    target="_blank" 
+                    class="flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
+                  >
+                    <Icon :name="getIconName(name)" class="w-5 h-5" />
+                    <span>{{ name.charAt(0).toUpperCase() + name.slice(1) }}</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-       <div class="flex justify-between items-end gap-10">
-          <div>
-            <ContentRenderer :value="project.body"/>
-          </div>
-         <div class="flex flex-start gap-[10px]">
-           <div v-for="(url, name) in project.links" :key="name">
-             <a :href="url" target="_blank" class="hover:scale-5 transition"><Icon :name="getIconName(name)" class="min-w-10 min-h-10" /></a>
-           </div>
-         </div>
+        <div class="mt-6 bg-white/70 backdrop-blur-sm p-6 rounded-lg shadow-md w-full">
+          <ContentRenderer :value="project.body" class="prose max-w-none"/>
         </div>
       </div>
     </div>
@@ -150,16 +179,13 @@ onUnmounted(() => {
 
 <style scoped>
 .project-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  /* Deux colonnes égales */
-  gap: 9px; /* Espacement entre les images */
-  align-items: start;
-  justify-content: center;
+  width: 100%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 0.75rem;
+  overflow: hidden;
 }
 
 .project-gallery-image {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 100%;
   object-position: top;
   object-fit: cover;
@@ -167,17 +193,28 @@ onUnmounted(() => {
 }
 
 :deep(p) {
-  margin-bottom: 1.5rem; /* ou utilisez gap-6 si vous préférez les unités Tailwind */
+  margin-bottom: 1.5rem;
 }
 
-/* Si vous voulez enlever la marge du dernier paragraphe */
 :deep(p:last-child) {
   margin-bottom: 0;
 }
 
-/* Ajoutez des styles personnalisés pour les boutons de navigation si nécessaire */
-.swiper-button-next,
-.swiper-button-prev {
-  color: #000; /* Changez la couleur selon vos besoins */
+:deep(.swiper-button-next),
+:deep(.swiper-button-prev) {
+  color: #1a365d;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+:deep(.swiper-button-next)::after,
+:deep(.swiper-button-prev)::after {
+  font-size: 20px;
+}
+
+:deep(.swiper-pagination-bullet-active) {
+  background-color: #1a365d;
 }
 </style>

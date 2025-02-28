@@ -257,5 +257,8 @@ const navigateToSection = (sectionId) => {
   line-height: 70.853%;
   letter-spacing: -6.4px;
   text-transform: uppercase;
+  &:hover {
+    font-style: normal;
+  }
 }
 </style> 

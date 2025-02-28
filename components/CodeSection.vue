@@ -18,7 +18,7 @@
     </div>
 
     <!-- Liste des projets -->
-       <div class="flex flex-col mt-auto text-right gap-[25px] content-center items-end" id="projects" ref="projectsList">
+    <div class="flex flex-col mt-auto text-right gap-[25px] content-center items-end" id="projects" ref="projectsList">
       <div v-for="(project, id) in data" :key="id" @click="showProjectDetails(project)" class="cursor-pointer hover:italic">
         <div class="flex items-center gap-[2px]">
           <div class="flex flex-col items-end">
